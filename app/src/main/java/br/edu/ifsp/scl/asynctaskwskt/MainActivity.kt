@@ -13,10 +13,19 @@ import java.lang.Thread.sleep
 import java.net.HttpURLConnection
 import java.net.URL
 
+/*
+obs:
+http://www.nobile.pro.br/sdm/texto.php irá retornar: Teste de recuperação de texto
+
+http://www.nobile.pro.br/sdm/data.php  irá retornar:
+{"seconds":30,"minutes":27,"hours":19,"mday":30,"wday":6,"mon":3,"year":2019,"yday":88,"weekday":"Saturday","month":"March","0":1553984850}
+
+*/
+
 class MainActivity : AppCompatActivity() {
     object constantes {
         val URL_BASE = "http://www.nobile.pro.br/sdm/"
-    }
+            }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
