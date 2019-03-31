@@ -22,6 +22,8 @@ http://www.nobile.pro.br/sdm/data.php  irá retornar:
 
 */
 
+
+
 class MainActivity : AppCompatActivity() {
     object constantes {
         val URL_BASE = "http://www.nobile.pro.br/sdm/"
