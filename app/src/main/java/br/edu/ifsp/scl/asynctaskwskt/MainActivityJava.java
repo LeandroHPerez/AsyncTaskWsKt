@@ -35,7 +35,7 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        //buscarTexto(URL_BASE + "texto.php");
+        buscarTexto(URL_BASE + "texto.php");
         buscarData(URL_BASE + "data.php");
 
     }
@@ -88,4 +88,50 @@ public class MainActivityJava extends AppCompatActivity implements View.OnClickL
         };
         buscaDataAS.execute(url);
     }
+
+
+
+
+
+    private void buscarTexto(String url) {
+        AsyncTask<String, Void, String> buscaTextoAS = new AsyncTask<String, Void, String>() {
+
+
+            protected void onPreExecute() {
+                super.onPreExecute();
+                progressBar.setVisibility(View.VISIBLE);
+            }
+
+            protected String doInBackground(String... strings) {
+                StringBuilder sb = new StringBuilder();
+                try {
+                    String url = strings[0];
+                    HttpURLConnection conexao = (HttpURLConnection) (new URL(url)).openConnection();
+                    if (conexao.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                        InputStream is = conexao.getInputStream();
+                        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+                        String temp;
+                        while ((temp = br.readLine()) != null) {
+                            sb.append(temp);
+                        }
+                    }
+
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+                return sb.toString();
+            }
+
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+
+                ((TextView) findViewById(R.id.textoTv)).setText(s);
+                progressBar.setVisibility(View.GONE);
+            }
+        };
+        buscaTextoAS.execute(url);
+    }
+
+
+
 }
